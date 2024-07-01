@@ -1,5 +1,6 @@
 package ru.netology.test;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import ru.netology.test.data.DataHelper;
 import ru.netology.test.data.DbHelper;
@@ -19,5 +20,10 @@ public class LoginTest {
         var verificationPage = loginPage.validLogin(authInfo);
         DashboardPage dashboardPage = verificationPage.validVerify(DbHelper.getVerificationCode());
         assertEquals("Личный кабинет", dashboardPage.getHeadLabel());
+    }
+
+    @AfterAll
+    static void CLearAfterSUT() {
+        DbHelper.clearTables();
     }
 }
